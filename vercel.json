@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "svelte",
+  "functions": {
+    "api/*.js": {
+      "runtime": "edge"
+    }
+  }
+}
