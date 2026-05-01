@@ -39,7 +39,13 @@
       if (res.ok) {
         const items = await res.json();
         if (items.length > 0 && items[0].media_url) {
-          instagramFeed = items;
+          // Proxy Instagram CDN images through our server
+          instagramFeed = items.map(item => ({
+            ...item,
+            media_url: item.media_url.startsWith('https://scontent')
+              ? `/api/image?url=${encodeURIComponent(item.media_url)}`
+              : item.media_url
+          }));
         } else {
           instagramFeed = mockFeed;
         }
