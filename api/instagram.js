@@ -1,8 +1,8 @@
 export const config = { runtime: 'edge' };
 
-const RSS_URL = process.env.RSS_URL || 'https://rss.app/feeds/mj5PM4FCVxTf5RsX.xml';
-
 export default async function handler(req) {
+  const RSS_URL = 'https://rss.app/feeds/mj5PM4FCVxTf5RsX.xml';
+  
   try {
     const response = await fetch(RSS_URL);
     const text = await response.text();
