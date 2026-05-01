@@ -357,6 +357,13 @@
     }
   }
   
+  /* Tablet: bump chevron up */
+  @media (min-width: 481px) and (max-width: 1024px) {
+    .scroll-indicator {
+      bottom: 100px;
+    }
+  }
+  
   @media (min-width: 768px) {
     .instagram-grid {
       grid-template-columns: repeat(4, 1fr);
