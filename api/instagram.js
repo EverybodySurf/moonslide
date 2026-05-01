@@ -38,7 +38,7 @@ export default async function handler(req) {
       }
     }
     
-    return new Response(JSON.stringify(items.slice(0, 6)), {
+    return new Response(JSON.stringify(items.slice(0, 12)), {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (e) {
