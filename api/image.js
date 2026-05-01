@@ -9,17 +9,28 @@ export default async function handler(req) {
   }
   
   try {
+    // Instagram CDN requires specific headers
     const response = await fetch(imageUrl, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
-        'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148',
+        'Accept': 'image/*',
         'Accept-Language': 'en-US,en;q=0.9',
-        'Referer': 'https://www.instagram.com/'
+        'Referer': 'https://www.instagram.com/',
+        'Origin': 'https://www.instagram.com',
+        'Sec-Fetch-Site': 'same-site',
+        'Sec-Fetch-Mode': 'no-cors',
+        'Sec-Fetch-Dest': 'image'
       }
     });
     
     if (!response.ok) {
-      return new Response('Failed to fetch image', { status: 500 });
+      // Fallback: return placeholder
+      return new Response(null, {
+        status: 302,
+        headers: {
+          'Location': '/images/surfboards-original.jpg'
+        }
+      });
     }
     
     const imageData = await response.blob();
@@ -27,10 +38,16 @@ export default async function handler(req) {
     return new Response(imageData, {
       headers: {
         'Content-Type': response.headers.get('Content-Type') || 'image/jpeg',
-        'Cache-Control': 'public, max-age=3600'
+        'Cache-Control': 'public, max-age=86400'
       }
     });
   } catch (e) {
-    return new Response('Image proxy error', { status: 500 });
+    // Fallback: redirect to placeholder
+    return new Response(null, {
+      status: 302,
+      headers: {
+        'Location': '/images/surfboards-original.jpg'
+      }
+    });
   }
 }
