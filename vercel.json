@@ -1,14 +1,5 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "svelte",
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "edge"
-    }
-  },
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/api/(.*)", "dest": "/api/$1" }
-  ]
+  "framework": "svelte"
 }
