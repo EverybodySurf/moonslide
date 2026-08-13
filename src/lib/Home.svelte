@@ -23,9 +23,10 @@
   }
   
   // Mock fallback data — fresh photos from Moonslide's Facebook page (Aug 2026)
+  let usingFallback = false;
   const mockFeed = [
     { id: '1', media_url: '/images/fb-gallery/board-red.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'New board ready 🏄' },
-    { id: '2', media_url: '/images/fb-gallery/shaping-blank.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Shaping session' },
+    { id: '2', media_url: '/images/fb-gallery/shaping-progress.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Shaping session' },
     { id: '3', media_url: '/images/fb-gallery/resin-blue.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Resin art details' },
     { id: '4', media_url: '/images/fb-gallery/workshop-shaping.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'In the workshop' },
     { id: '5', media_url: '/images/fb-gallery/board-yellow.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Fresh glass job' },
@@ -33,6 +34,9 @@
     { id: '7', media_url: '/images/fb-gallery/resin-logo.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Color pour' },
     { id: '8', media_url: '/images/fb-gallery/boards-stacked.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Board rack' },
     { id: '9', media_url: '/images/fb-gallery/board-in-water.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Ready to surf' },
+    { id: '10', media_url: '/images/fb-gallery/board-orange.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Bright & bold' },
+    { id: '11', media_url: '/images/fb-gallery/board-white.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Clean lines' },
+    { id: '12', media_url: '/images/fb-gallery/surf-action.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Catching waves' },
   ];
   
   // Fetch Instagram feed from server API (bypasses CORS)
@@ -51,13 +55,16 @@
           }));
         } else {
           instagramFeed = mockFeed;
+          usingFallback = true;
         }
       } else {
         instagramFeed = mockFeed;
+        usingFallback = true;
       }
     } catch (e) {
       console.log('API unavailable, using mock data:', e);
       instagramFeed = mockFeed;
+      usingFallback = true;
     }
   });
   
@@ -122,6 +129,7 @@
     isOpen={modalOpen} 
     currentIndex={modalIndex} 
     posts={instagramFeed} 
+    isFallback={usingFallback}
     onClose={closeModal} 
   />
 </div>
