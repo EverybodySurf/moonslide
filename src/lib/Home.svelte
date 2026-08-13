@@ -22,14 +22,17 @@
     modalOpen = false;
   }
   
-  // Mock fallback data
+  // Mock fallback data — fresh photos from Moonslide's Facebook page (Aug 2026)
   const mockFeed = [
-    { id: '1', media_url: '/images/fluid-art.png', permalink: 'https://instagram.com/moonslide.surfboards', caption: 'New board in progress 🏄' },
-    { id: '2', media_url: '/images/surfboards-original.jpg', permalink: 'https://instagram.com/moonslide.surfboards', caption: 'Shaping session' },
-    { id: '3', media_url: '/images/fluid-art-dark.png', permalink: 'https://instagram.com/moonslide.surfboards', caption: 'Resin art details' },
-    { id: '4', media_url: '/images/logo.png', permalink: 'https://instagram.com/moonslide.surfboards', caption: 'Moonslide logo' },
-    { id: '5', media_url: '/images/fluid-art.png', permalink: 'https://instagram.com/moonslide.surfboards', caption: 'Color pour' },
-    { id: '6', media_url: '/images/surfboards-original.jpg', permalink: 'https://instagram.com/moonslide.surfboards', caption: 'Workshop view' },
+    { id: '1', media_url: '/images/fb-gallery/board-red.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'New board ready 🏄' },
+    { id: '2', media_url: '/images/fb-gallery/shaping-blank.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Shaping session' },
+    { id: '3', media_url: '/images/fb-gallery/resin-blue.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Resin art details' },
+    { id: '4', media_url: '/images/fb-gallery/workshop-shaping.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'In the workshop' },
+    { id: '5', media_url: '/images/fb-gallery/board-yellow.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Fresh glass job' },
+    { id: '6', media_url: '/images/fb-gallery/ocean-waves.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Ocean days' },
+    { id: '7', media_url: '/images/fb-gallery/resin-logo.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Color pour' },
+    { id: '8', media_url: '/images/fb-gallery/boards-stacked.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Board rack' },
+    { id: '9', media_url: '/images/fb-gallery/board-in-water.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Ready to surf' },
   ];
   
   // Fetch Instagram feed from server API (bypasses CORS)
