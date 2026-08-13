@@ -23,6 +23,7 @@
   }
   
   // Mock fallback data — fresh photos from Moonslide's Facebook page (Aug 2026)
+  let usingFallback = false;
   const mockFeed = [
     { id: '1', media_url: '/images/fb-gallery/board-red.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'New board ready 🏄' },
     { id: '2', media_url: '/images/fb-gallery/shaping-progress.jpg', permalink: 'https://www.facebook.com/moonslide.surf.shape', caption: 'Shaping session' },
@@ -54,13 +55,16 @@
           }));
         } else {
           instagramFeed = mockFeed;
+          usingFallback = true;
         }
       } else {
         instagramFeed = mockFeed;
+        usingFallback = true;
       }
     } catch (e) {
       console.log('API unavailable, using mock data:', e);
       instagramFeed = mockFeed;
+      usingFallback = true;
     }
   });
   
@@ -125,6 +129,7 @@
     isOpen={modalOpen} 
     currentIndex={modalIndex} 
     posts={instagramFeed} 
+    isFallback={usingFallback}
     onClose={closeModal} 
   />
 </div>
